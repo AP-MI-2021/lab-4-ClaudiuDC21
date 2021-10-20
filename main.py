@@ -61,8 +61,8 @@ def get_numbers_from_both_lists(lst1: List[int], lst2: List[int]) -> List[int]:
         for num2 in lst2:
             if num1 == num2:
                 ok = 1
-                for num in intersectia:
-                    if num1 == num:
+                for elemente in intersectia:
+                    if num1 == elemente:
                         ok = 0
                 if ok == 1:
                     intersectia.append(int(num1))
