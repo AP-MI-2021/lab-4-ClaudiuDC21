@@ -98,6 +98,64 @@ def test_get_palindrome_on_concat_of_lists():
     assert get_palindrome_on_concat_of_lists([1, 23, 45, 544, 342], [1, 23, 243, 2575, 243, 454, 666]) == [11, 342243]
 
 
+def get_reverse(n):
+    '''
+    Determina inversul unui numar n.
+    :param n: numarul dat
+    :return: inversul numarului
+    '''
+    invers = 0
+    while n:
+        invers = invers * 10 + n % 10
+        n = n // 10
+    return invers
+
+
+def test_get_reverse():
+    assert get_reverse(1) == 1
+    assert get_reverse(123) == 321
+    assert get_reverse(246) == 642
+
+
+def get_lists_with_reverse_on_div_elements(lst1, lst2, lst3) -> tuple:
+    '''
+    Determina listele obținute prin înlocuirea în cele două liste citite la punctul 1 a
+tuturor elementelor cu oglinditul lor dacă îndeplinesc următoarea regulă: elementele sunt divizibile
+cu toate elementele din a treia lista.
+    :param lst1:Prima lista data.
+    :param lst2:A doua lista data.
+    :param lst3:A treia lista cu care se vor compara primele 2.
+    :return: 2 liste cu elemente prelucrte.
+    '''
+    lst1_prelucrat = []
+    lst2_prelucrat = []
+    for num in lst1:
+        work = 1
+        for div in lst3:
+            if num % div != 0:
+                work = 0
+        if work == 1:
+            lst1_prelucrat.append(int(get_reverse(num)))
+        else:
+            lst1_prelucrat.append(int(num))
+    for num in lst2:
+        work = 1
+        for div in lst3:
+            if num % div != 0:
+                work = 0
+        if work == 1:
+            lst2_prelucrat.append(int(get_reverse(num)))
+        else:
+            lst2_prelucrat.append(int(num))
+    return lst1_prelucrat, lst2_prelucrat
+
+
+def test_get_lists_with_reverse_on_div_elements():
+    assert get_lists_with_reverse_on_div_elements([], [], []) == ([], [])
+    assert get_lists_with_reverse_on_div_elements([12, 22, 36, 363], [22, 23, 36, 55, 363], [1, 2, 3, 4]) == ([21, 22, 63, 363], [22, 23, 63, 55, 363])
+    assert get_lists_with_reverse_on_div_elements([15, 23, 453, 643, 24], [12, 24, 35, 55], [1, 2, 3, 4]) == ([15, 23, 453, 643, 42], [21, 42, 35, 55])
+
+
 def main():
     lista1 = []
     lista2 = []
@@ -119,9 +177,12 @@ def main():
         elif optiunea == '3':
             print(f'Intersectia celo doua liste este {get_numbers_from_both_lists(lista1, lista2)}')
         elif optiunea == '4':
-            print(f'Lista cu elementele palindrom prin concatenare sunt: {get_palindrome_on_concat_of_lists(lista1, lista2)}')
+            print(
+                f'Lista cu elementele palindrom prin concatenare sunt: {get_palindrome_on_concat_of_lists(lista1, lista2)}')
         elif optiunea == '5':
-            pass
+            print('Cititi a 3 a lista!')
+            lista3 = read_list()
+            print(f'Dupa prelucrare, listele vor fi acestea: {get_lists_with_reverse_on_div_elements(lista1,lista2,lista3)}')
         elif optiunea == 'x':
             break
         else:
@@ -132,4 +193,6 @@ if __name__ == '__main__':
     test_get_same_number_of_par()
     test_get_numbers_from_both_lists()
     test_get_palindrome_on_concat_of_lists()
+    test_get_reverse()
+    test_get_lists_with_reverse_on_div_elements()
     main()
