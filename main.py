@@ -1,3 +1,5 @@
+from typing import List
+
 def show_menu():
     print('1. Citirea a doua liste de numere intregi. ')
     print('2. Afisare daca cele doua liste au acelasi numar de elemente pare. ')
@@ -7,7 +9,7 @@ def show_menu():
     print('x. Iesire.')
 
 
-def read_list():
+def read_list() -> List[int]:
     """
     Citire lista.
     """
@@ -19,9 +21,9 @@ def read_list():
     return lista_int
 
 
-def get_same_number_of_par(lst1, lst2):
+def get_same_number_of_par(lst1: List[int], lst2: List[int]) -> bool:
     '''
-    Determina daca 2 liste au acelaso numar de elemnte pare.
+    Determina daca 2 liste au acelaso numar de elemente pare.
     :param lst1: Prima lista data.
     :param lst2: A doua lista data.
     :return: True daca au acelasi numar de elemente pare, False in caz contrar.
@@ -47,7 +49,7 @@ def test_get_same_number_of_par():
     assert get_same_number_of_par([12, 13, 14, 1618], [11, 3, 5, 7]) == False
 
 
-def get_numbers_from_both_lists(lst1, lst2):
+def get_numbers_from_both_lists(lst1: List[int], lst2: List[int]) -> List[int]:
     '''
     Determina elementele care sunt in ambele liste.
     :param lst1: Prima lista data.
@@ -70,11 +72,10 @@ def get_numbers_from_both_lists(lst1, lst2):
 def test_get_numbers_from_both_lists():
     assert get_numbers_from_both_lists([], []) == []
     assert get_numbers_from_both_lists([12, 22, 36, 424], [22, 23, 36, 55, 424]) == [22, 36, 424]
-    assert get_numbers_from_both_lists([13, 14, 53, 365, 345, 23, 13, 14, 365],
-                                       [13, 14, 243, 3445, 13, 14, 24342, 365]) == [13, 14, 365]
+    assert get_numbers_from_both_lists([13, 14, 53, 365, 345, 23, 13, 14, 365],[13, 14, 243, 3445, 13, 14, 24342, 365]) == [13, 14, 365]
 
 
-def get_palindrome_on_concat_of_lists(lst1, lst2):
+def get_palindrome_on_concat_of_lists(lst1: List[int], lst2: List[int]) -> List[int]:
     '''
     Determina toate palindroamele obținute prin concatenarea elementelor de pe aceleași poziții în cele două liste
     :param lst1: Prima lista data.
@@ -98,7 +99,7 @@ def test_get_palindrome_on_concat_of_lists():
     assert get_palindrome_on_concat_of_lists([1, 23, 45, 544, 342], [1, 23, 243, 2575, 243, 454, 666]) == [11, 342243]
 
 
-def get_reverse(n):
+def get_reverse(n: int) -> int:
     '''
     Determina inversul unui numar n.
     :param n: numarul dat
@@ -117,7 +118,7 @@ def test_get_reverse():
     assert get_reverse(246) == 642
 
 
-def get_lists_with_reverse_on_div_elements(lst1, lst2, lst3) -> tuple:
+def get_lists_with_reverse_on_div_elements(lst1: List[int], lst2: List[int], lst3:List[int]) -> tuple:
     '''
     Determina listele obținute prin înlocuirea în cele două liste citite la punctul 1 a
 tuturor elementelor cu oglinditul lor dacă îndeplinesc următoarea regulă: elementele sunt divizibile
@@ -177,8 +178,7 @@ def main():
         elif optiunea == '3':
             print(f'Intersectia celo doua liste este {get_numbers_from_both_lists(lista1, lista2)}')
         elif optiunea == '4':
-            print(
-                f'Lista cu elementele palindrom prin concatenare sunt: {get_palindrome_on_concat_of_lists(lista1, lista2)}')
+            print(f'Lista cu elementele palindrom prin concatenare sunt: {get_palindrome_on_concat_of_lists(lista1, lista2)}')
         elif optiunea == '5':
             print('Cititi a 3 a lista!')
             lista3 = read_list()
